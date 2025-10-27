@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaBriefcase } from 'react-icons/fa';
@@ -24,9 +25,27 @@ import Notifications from './pages/jobseeker/Notifications';
 import NotificationPreferences from './pages/jobseeker/NotificationPreferences';
 import Analytics from './pages/jobseeker/Analytics';
 import NotificationCenter from './components/common/NotificationCenter';
+import RecruiterDashboard from './pages/recruiter/Dashboard';
+import CompanyProfile from './pages/recruiter/CompanyProfile';
 import './App.css';
 
 function App() {
+  const [jobSeekerDropdown, setJobSeekerDropdown] = useState(false);
+  const [recruiterDropdown, setRecruiterDropdown] = useState(false);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.dropdown-container')) {
+        setJobSeekerDropdown(false);
+        setRecruiterDropdown(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
@@ -48,18 +67,82 @@ function App() {
                 <Link to="/jobs" className="text-gray-700 hover:text-primary-600 font-medium">
                   Find Jobs
                 </Link>
-                <Link to="/dashboard" className="text-gray-700 hover:text-primary-600 font-medium">
-                  Dashboard
-                </Link>
-                <Link to="/dashboard/analytics" className="text-gray-700 hover:text-primary-600 font-medium">
-                  Analytics
-                </Link>
-                <Link to="/dashboard/applications" className="text-gray-700 hover:text-primary-600 font-medium">
-                  My Applications
-                </Link>
-                <Link to="/dashboard/saved-jobs" className="text-gray-700 hover:text-primary-600 font-medium">
-                  Saved Jobs
-                </Link>
+                
+                {/* Job Seeker Navigation */}
+                <div className="relative dropdown-container">
+                  <button 
+                    onClick={() => {
+                      setJobSeekerDropdown(!jobSeekerDropdown);
+                      setRecruiterDropdown(false);
+                    }}
+                    className="text-gray-700 hover:text-primary-600 font-medium"
+                  >
+                    Job Seeker ▾
+                  </button>
+                  {jobSeekerDropdown && (
+                    <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 border border-gray-200 z-50">
+                      <Link 
+                        to="/dashboard" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        onClick={() => setJobSeekerDropdown(false)}
+                      >
+                        Dashboard
+                      </Link>
+                      <Link 
+                        to="/dashboard/analytics" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        onClick={() => setJobSeekerDropdown(false)}
+                      >
+                        Analytics
+                      </Link>
+                      <Link 
+                        to="/dashboard/applications" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        onClick={() => setJobSeekerDropdown(false)}
+                      >
+                        My Applications
+                      </Link>
+                      <Link 
+                        to="/dashboard/saved-jobs" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        onClick={() => setJobSeekerDropdown(false)}
+                      >
+                        Saved Jobs
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                {/* Recruiter Navigation */}
+                <div className="relative dropdown-container">
+                  <button 
+                    onClick={() => {
+                      setRecruiterDropdown(!recruiterDropdown);
+                      setJobSeekerDropdown(false);
+                    }}
+                    className="text-gray-700 hover:text-primary-600 font-medium"
+                  >
+                    Recruiter ▾
+                  </button>
+                  {recruiterDropdown && (
+                    <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 border border-gray-200 z-50">
+                      <Link 
+                        to="/recruiter/dashboard" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        onClick={() => setRecruiterDropdown(false)}
+                      >
+                        Dashboard
+                      </Link>
+                      <Link 
+                        to="/recruiter/company" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        onClick={() => setRecruiterDropdown(false)}
+                      >
+                        Company Profile
+                      </Link>
+                    </div>
+                  )}
+                </div>
                 
                 {/* Notification Center */}
                 <NotificationCenter />
@@ -98,6 +181,10 @@ function App() {
             <Route path="/dashboard/profile/skills" element={<Skills />} />
             <Route path="/dashboard/profile/additional-info" element={<AdditionalInfo />} />
             <Route path="/dashboard/profile/resume" element={<ResumeManagement />} />
+            
+            {/* Recruiter Routes */}
+            <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
+            <Route path="/recruiter/company" element={<CompanyProfile />} />
           </Routes>
         </main>
         
