@@ -496,7 +496,7 @@ Join us in our journey to shape the future of technology!`,
           <h2 className="text-xl font-bold text-gray-900 mb-4">Social Media Links</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                 <FaLinkedin className="text-blue-700" /> LinkedIn
               </label>
               <input
@@ -510,7 +510,7 @@ Join us in our journey to shape the future of technology!`,
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                 <FaTwitter className="text-blue-400" /> Twitter
               </label>
               <input
@@ -524,7 +524,7 @@ Join us in our journey to shape the future of technology!`,
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                 <FaFacebook className="text-blue-600" /> Facebook
               </label>
               <input
@@ -538,7 +538,7 @@ Join us in our journey to shape the future of technology!`,
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                 <FaInstagram className="text-pink-600" /> Instagram
               </label>
               <input

@@ -27,6 +27,7 @@ import Analytics from './pages/jobseeker/Analytics';
 import NotificationCenter from './components/common/NotificationCenter';
 import RecruiterDashboard from './pages/recruiter/Dashboard';
 import CompanyProfile from './pages/recruiter/CompanyProfile';
+import PostJob from './pages/recruiter/PostJob';
 import './App.css';
 
 function App() {
@@ -134,6 +135,13 @@ function App() {
                         Dashboard
                       </Link>
                       <Link 
+                        to="/recruiter/post-job" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        onClick={() => setRecruiterDropdown(false)}
+                      >
+                        Post a Job
+                      </Link>
+                      <Link 
                         to="/recruiter/company" 
                         className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                         onClick={() => setRecruiterDropdown(false)}
@@ -185,6 +193,7 @@ function App() {
             {/* Recruiter Routes */}
             <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
             <Route path="/recruiter/company" element={<CompanyProfile />} />
+            <Route path="/recruiter/post-job" element={<PostJob />} />
           </Routes>
         </main>
         
