@@ -20,29 +20,37 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Manual chunk splitting for better caching
-        manualChunks: {
+        manualChunks: (id) => {
           // Vendor chunks
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
-          'ui-vendor': ['react-icons', 'react-toastify', 'react-hook-form'],
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) {
+              return 'redux-vendor';
+            }
+            if (id.includes('react-icons') || id.includes('react-toastify') || id.includes('react-hook-form')) {
+              return 'ui-vendor';
+            }
+            return 'vendor';
+          }
           
           // Feature-based chunks
-          'jobseeker': [
-            './src/pages/jobseeker/Dashboard.jsx',
-            './src/pages/jobseeker/Profile.jsx',
-            './src/pages/jobseeker/MyApplications.jsx',
-            './src/pages/jobseeker/Analytics.jsx'
-          ],
-          'recruiter': [
-            './src/pages/recruiter/Dashboard.jsx',
-            './src/pages/recruiter/PostJob.jsx',
-            './src/pages/recruiter/MyJobs.jsx',
-            './src/pages/recruiter/CandidateSearch.jsx'
-          ]
+          if (id.includes('/pages/jobseeker/')) {
+            return 'jobseeker';
+          }
+          if (id.includes('/pages/recruiter/')) {
+            return 'recruiter';
+          }
         },
         
         // Asset file naming
         assetFileNames: (assetInfo) => {
+          // Check if assetInfo and name exist
+          if (!assetInfo || !assetInfo.name) {
+            return 'assets/[name]-[hash][extname]';
+          }
+          
           const info = assetInfo.name.split('.');
           let extType = info[info.length - 1];
           
@@ -50,6 +58,8 @@ export default defineConfig({
             extType = 'images';
           } else if (/\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
             extType = 'fonts';
+          } else if (/\.css$/i.test(assetInfo.name)) {
+            return 'assets/css/[name]-[hash][extname]';
           }
           
           return `assets/${extType}/[name]-[hash][extname]`;
@@ -60,15 +70,6 @@ export default defineConfig({
         
         // Entry file naming
         entryFileNames: 'assets/js/[name]-[hash].js'
-      }
-    },
-    
-    // Minification options
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.log in production
-        drop_debugger: true
       }
     }
   },
