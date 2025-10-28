@@ -7,6 +7,9 @@ import alertReducer from './slices/alertSlice';
 import notificationsReducer from './slices/notificationsSlice';
 import companyReducer from './slices/companySlice';
 import jobPostingReducer from './slices/jobPostingSlice';
+import candidatesReducer from './slices/candidatesSlice';
+import interviewsReducer from './slices/interviewsSlice';
+import messagesReducer from './slices/messagesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +21,9 @@ export const store = configureStore({
     notifications: notificationsReducer,
     company: companyReducer,
     jobPosting: jobPostingReducer,
+    candidates: candidatesReducer,
+    interviews: interviewsReducer,
+    messages: messagesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

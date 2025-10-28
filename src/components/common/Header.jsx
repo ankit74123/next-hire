@@ -9,32 +9,32 @@ const Header = () => {
   const unreadCount = 0;
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-50 animate-slide-down">
       <nav className="container-custom py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <FaBriefcase className="text-primary-600 text-3xl" />
-            <span className="text-2xl font-bold text-gray-800">JobPortal</span>
+          <Link to="/" className="flex items-center space-x-2 group">
+            <FaBriefcase className="text-primary-600 text-3xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+            <span className="text-2xl font-bold text-gray-800 group-hover:text-primary-600 transition-colors duration-300">JobPortal</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/jobs"
-              className="text-gray-700 hover:text-primary-600 font-medium transition"
+              className="text-gray-700 hover:text-primary-600 font-medium transition-all duration-200 transform hover:scale-110"
             >
               Find Jobs
             </Link>
             <Link
               to="/companies"
-              className="text-gray-700 hover:text-primary-600 font-medium transition"
+              className="text-gray-700 hover:text-primary-600 font-medium transition-all duration-200 transform hover:scale-110"
             >
               Companies
             </Link>
             <Link
               to="/services"
-              className="text-gray-700 hover:text-primary-600 font-medium transition"
+              className="text-gray-700 hover:text-primary-600 font-medium transition-all duration-200 transform hover:scale-110"
             >
               Services
             </Link>
@@ -44,11 +44,11 @@ const Header = () => {
                 {/* Notifications */}
                 <Link
                   to="/notifications"
-                  className="relative text-gray-700 hover:text-primary-600"
+                  className="relative text-gray-700 hover:text-primary-600 transition-all duration-200 transform hover:scale-110"
                 >
                   <FaBell className="text-2xl" />
                   {unreadCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-bounce">
                       {unreadCount}
                     </span>
                   )}
@@ -57,7 +57,7 @@ const Header = () => {
                 {/* Profile */}
                 <Link
                   to="/dashboard"
-                  className="flex items-center space-x-2 text-gray-700 hover:text-primary-600"
+                  className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition-all duration-200 transform hover:scale-105"
                 >
                   <FaUser className="text-xl" />
                   <span className="font-medium">{user?.name || 'Profile'}</span>
@@ -67,13 +67,13 @@ const Header = () => {
               <div className="flex items-center space-x-4">
                 <Link
                   to="/login"
-                  className="text-gray-700 hover:text-primary-600 font-medium"
+                  className="text-gray-700 hover:text-primary-600 font-medium transition-all duration-200 transform hover:scale-110"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition"
+                  className="bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-2 rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
                 >
                   Sign Up
                 </Link>

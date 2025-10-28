@@ -38,15 +38,15 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
   if (!gridView) {
     // List View
     return (
-      <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6 mb-4">
+      <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 p-6 mb-4 hover-lift border border-gray-100 group">
         <div className="flex items-start justify-between">
           <div className="flex flex-1">
             {/* Company Logo */}
-            <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary-50 to-purple-50 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
               {job.companyLogo ? (
                 <img src={job.companyLogo} alt={job.company} className="w-12 h-12 object-contain" />
               ) : (
-                <span className="text-2xl font-bold text-gray-400">{job.company.charAt(0)}</span>
+                <span className="text-2xl font-bold text-primary-600">{job.company.charAt(0)}</span>
               )}
             </div>
 
@@ -56,7 +56,7 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
                 <div>
                   <Link 
                     to={`/jobs/${job.id}`}
-                    className="text-xl font-semibold text-gray-900 hover:text-primary-600 transition"
+                    className="text-xl font-semibold text-gray-900 hover:text-primary-600 transition-colors duration-200"
                   >
                     {job.title}
                   </Link>
@@ -64,32 +64,32 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
                 </div>
                 <button
                   onClick={() => onSave(job.id)}
-                  className="text-2xl text-gray-400 hover:text-primary-600 transition"
+                  className="text-2xl text-gray-400 hover:text-primary-600 transition-all duration-300 hover:scale-125"
                   title={isSaved ? 'Remove from saved' : 'Save job'}
                 >
-                  {isSaved ? <FaBookmark className="text-primary-600" /> : <FaRegBookmark />}
+                  {isSaved ? <FaBookmark className="text-primary-600 animate-pulse" /> : <FaRegBookmark />}
                 </button>
               </div>
 
               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-3">
-                <span className="flex items-center">
+                <span className="flex items-center hover:text-primary-600 transition">
                   <FaBriefcase className="mr-2" />
                   {job.experience}
                 </span>
-                <span className="flex items-center">
+                <span className="flex items-center hover:text-green-600 transition">
                   <FaDollarSign className="mr-2" />
                   {job.salary}
                 </span>
-                <span className="flex items-center">
+                <span className="flex items-center hover:text-blue-600 transition">
                   <FaMapMarkerAlt className="mr-2" />
                   {job.location}
                 </span>
-                <span className="flex items-center">
+                <span className="flex items-center hover:text-purple-600 transition">
                   <FaClock className="mr-2" />
                   {getPostedTimeAgo(job.postedDate)}
                 </span>
                 {job.applicants && (
-                  <span className="flex items-center">
+                  <span className="flex items-center hover:text-orange-600 transition">
                     <FaUsers className="mr-2" />
                     {job.applicants} applicants
                   </span>
@@ -97,10 +97,10 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
               </div>
 
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${getJobTypeBadgeColor(job.jobType)}`}>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium transform hover:scale-110 transition-transform duration-200 ${getJobTypeBadgeColor(job.jobType)}`}>
                   {job.jobType}
                 </span>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${getWorkModeBadgeColor(job.workMode)}`}>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium transform hover:scale-110 transition-transform duration-200 ${getWorkModeBadgeColor(job.workMode)}`}>
                   {job.workMode}
                 </span>
               </div>
@@ -108,19 +108,22 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
               {job.skills && job.skills.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
                   {job.skills.slice(0, 5).map((skill, index) => (
-                    <span key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">
+                    <span 
+                      key={index} 
+                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs hover:from-primary-50 hover:to-purple-50 hover:text-primary-700 transition-all duration-200 cursor-default transform hover:scale-105"
+                    >
                       {skill}
                     </span>
                   ))}
                   {job.skills.length > 5 && (
-                    <span className="text-gray-500 text-xs px-2 py-1">+{job.skills.length - 5} more</span>
+                    <span className="text-gray-500 text-xs px-2 py-1 hover:text-gray-700 transition">+{job.skills.length - 5} more</span>
                   )}
                 </div>
               )}
 
               <button
                 onClick={() => onQuickApply(job.id)}
-                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg font-medium transition"
+                className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
               >
                 Quick Apply
               </button>
@@ -133,56 +136,56 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
 
   // Grid View
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6 flex flex-col h-full">
+    <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 p-6 flex flex-col h-full hover-lift border border-gray-100 group animate-fade-in">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center">
-          <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+          <div className="w-12 h-12 bg-gradient-to-br from-primary-50 to-purple-50 rounded-xl flex items-center justify-center mr-3 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
             {job.companyLogo ? (
               <img src={job.companyLogo} alt={job.company} className="w-10 h-10 object-contain" />
             ) : (
-              <span className="text-xl font-bold text-gray-400">{job.company.charAt(0)}</span>
+              <span className="text-xl font-bold text-primary-600">{job.company.charAt(0)}</span>
             )}
           </div>
           <div>
-            <p className="text-gray-600 text-sm font-medium">{job.company}</p>
+            <p className="text-gray-700 text-sm font-semibold group-hover:text-primary-600 transition">{job.company}</p>
             <span className="text-xs text-gray-500">{getPostedTimeAgo(job.postedDate)}</span>
           </div>
         </div>
         <button
           onClick={() => onSave(job.id)}
-          className="text-xl text-gray-400 hover:text-primary-600 transition"
+          className="text-xl text-gray-400 hover:text-primary-600 transition-all duration-300 hover:scale-125"
           title={isSaved ? 'Remove from saved' : 'Save job'}
         >
-          {isSaved ? <FaBookmark className="text-primary-600" /> : <FaRegBookmark />}
+          {isSaved ? <FaBookmark className="text-primary-600 animate-pulse" /> : <FaRegBookmark />}
         </button>
       </div>
 
       {/* Job Title */}
       <Link 
         to={`/jobs/${job.id}`}
-        className="text-lg font-semibold text-gray-900 hover:text-primary-600 transition mb-3 block"
+        className="text-lg font-semibold text-gray-900 hover:text-primary-600 transition-all duration-200 mb-3 block group-hover:translate-x-1"
       >
         {job.title}
       </Link>
 
       {/* Job Details */}
       <div className="space-y-2 mb-4 text-sm text-gray-600">
-        <div className="flex items-center">
-          <FaMapMarkerAlt className="mr-2 text-gray-400" />
+        <div className="flex items-center hover:text-blue-600 transition">
+          <FaMapMarkerAlt className="mr-2 text-gray-400 group-hover:text-blue-500 transition" />
           <span>{job.location}</span>
         </div>
-        <div className="flex items-center">
-          <FaBriefcase className="mr-2 text-gray-400" />
+        <div className="flex items-center hover:text-primary-600 transition">
+          <FaBriefcase className="mr-2 text-gray-400 group-hover:text-primary-500 transition" />
           <span>{job.experience}</span>
         </div>
-        <div className="flex items-center">
-          <FaDollarSign className="mr-2 text-gray-400" />
+        <div className="flex items-center hover:text-green-600 transition">
+          <FaDollarSign className="mr-2 text-gray-400 group-hover:text-green-500 transition" />
           <span>{job.salary}</span>
         </div>
         {job.applicants && (
-          <div className="flex items-center">
-            <FaUsers className="mr-2 text-gray-400" />
+          <div className="flex items-center hover:text-orange-600 transition">
+            <FaUsers className="mr-2 text-gray-400 group-hover:text-orange-500 transition" />
             <span>{job.applicants} applicants</span>
           </div>
         )}
@@ -190,10 +193,10 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
 
       {/* Badges */}
       <div className="flex flex-wrap gap-2 mb-4">
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getJobTypeBadgeColor(job.jobType)}`}>
+        <span className={`px-3 py-1 rounded-full text-xs font-medium transform hover:scale-110 transition-transform duration-200 ${getJobTypeBadgeColor(job.jobType)}`}>
           {job.jobType}
         </span>
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getWorkModeBadgeColor(job.workMode)}`}>
+        <span className={`px-3 py-1 rounded-full text-xs font-medium transform hover:scale-110 transition-transform duration-200 ${getWorkModeBadgeColor(job.workMode)}`}>
           {job.workMode}
         </span>
       </div>
@@ -202,12 +205,15 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
       {job.skills && job.skills.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-4">
           {job.skills.slice(0, 4).map((skill, index) => (
-            <span key={index} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+            <span 
+              key={index} 
+              className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 px-2 py-1 rounded text-xs hover:from-primary-50 hover:to-purple-50 hover:text-primary-700 transition-all duration-200 cursor-default transform hover:scale-105"
+            >
               {skill}
             </span>
           ))}
           {job.skills.length > 4 && (
-            <span className="text-gray-500 text-xs px-2 py-1">+{job.skills.length - 4}</span>
+            <span className="text-gray-500 text-xs px-2 py-1 hover:text-gray-700 transition">+{job.skills.length - 4}</span>
           )}
         </div>
       )}
@@ -215,7 +221,7 @@ const JobCard = ({ job, onSave, isSaved = false, onQuickApply, gridView = true }
       {/* Apply Button */}
       <button
         onClick={() => onQuickApply(job.id)}
-        className="mt-auto w-full bg-primary-600 hover:bg-primary-700 text-white py-2 rounded-lg font-medium transition"
+        className="mt-auto w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
       >
         Quick Apply
       </button>

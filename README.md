@@ -1,52 +1,96 @@
-# Job Portal Frontend
+# Job Portal Frontend 🎯
 
-A modern job portal application built with React, Redux Toolkit, and Tailwind CSS.
+> A comprehensive, production-ready job portal application built with React 19, Redux Toolkit, and Tailwind CSS. Features include job search, application tracking, recruiter dashboard, ATS pipeline, interview scheduling, company reviews, and salary insights.
+
+[![React](https://img.shields.io/badge/React-19.1.1-blue.svg)](https://reactjs.org/)
+[![Redux](https://img.shields.io/badge/Redux_Toolkit-2.9.2-purple.svg)](https://redux-toolkit.js.org/)
+[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC.svg)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-7.1.14-646CFF.svg)](https://vitejs.dev/)
+
+## ✨ Features
+
+### For Job Seekers
+- 🔍 **Advanced Job Search** - Filter by location, salary, experience, company, and more
+- 📝 **Profile Management** - Complete profile builder with work experience, education, and skills
+- 📄 **Resume Management** - Upload and manage multiple resumes
+- 📊 **Application Tracking** - Track all job applications with status updates
+- 💾 **Saved Jobs** - Bookmark interesting jobs for later
+- 🔔 **Job Alerts** - Get notified about new jobs matching your criteria
+- 📈 **Analytics Dashboard** - Visualize your job search progress
+- ⭐ **Company Reviews** - Read and write reviews about companies
+- 💰 **Salary Insights** - Research salaries by role, location, and experience
+
+### For Recruiters
+- 📋 **Job Posting** - Multi-step form to post jobs with detailed requirements
+- 👔 **Job Management** - View, edit, and manage all posted jobs
+- 📥 **Application Management** - Review and track candidate applications
+- 🔎 **Candidate Search** - Search resume database with advanced filters
+- 📌 **ATS Pipeline** - Kanban board to manage hiring pipeline
+- 📅 **Interview Scheduling** - Schedule and manage interviews
+- 💬 **Messaging System** - Communicate with candidates
+- 📧 **Email Templates** - Create and manage email templates
+- 🏢 **Company Profile** - Showcase company information and culture
 
 ## 🚀 Tech Stack
 
-- **React 19** - UI Library
-- **Redux Toolkit** - State Management
-- **React Router DOM** - Routing
-- **Tailwind CSS** - Styling
-- **Axios** - HTTP Client
-- **React Hook Form** - Form Management
-- **React Icons** - Icon Library
-- **React Toastify** - Toast Notifications
-- **Vite** - Build Tool
+- **React 19.1.1** - Latest React with hooks and concurrent features
+- **Redux Toolkit 2.9.2** - State management with 11 slices
+- **React Router DOM 7.9.4** - Client-side routing with 47 routes
+- **Tailwind CSS 3.4.1** - Utility-first CSS framework
+- **Vite 7.1.14** - Lightning-fast build tool with HMR
+- **React Hook Form 7.65.0** - Performant form management
+- **React Icons 5.5.0** - Comprehensive icon library
+- **React Toastify 11.0.5** - Elegant toast notifications
 
 ## 📁 Project Structure
 
 ```
 src/
-├── assets/           # Images, fonts, and static files
-├── components/       # Reusable components
-│   ├── auth/        # Authentication components
-│   ├── common/      # Common components (Header, Footer, Sidebar)
-│   ├── jobseeker/   # Job seeker specific components
-│   ├── recruiter/   # Recruiter specific components
-│   └── shared/      # Shared components
-├── hooks/           # Custom React hooks
-├── pages/           # Page components
-├── redux/           # Redux store and slices
-│   ├── store.js    # Redux store configuration
-│   └── slices/     # Redux slices
-├── services/        # API services
-├── utils/           # Utility functions
-│   ├── constants.js # App constants
-│   ├── helpers.js   # Helper functions
-│   └── validation.js # Validation utilities
-├── App.jsx          # Main app component
-└── main.jsx         # Entry point
+├── components/
+│   ├── auth/          # ProtectedRoute
+│   ├── common/        # Header, Footer, ErrorBoundary, etc. (10 components)
+│   ├── jobseeker/     # StatCard, ProgressBar (2 components)
+│   ├── recruiter/     # Recruiter-specific components
+│   └── shared/        # Shared utilities
+├── hooks/
+│   ├── useAuth.js           # Authentication hook
+│   └── useAccessibility.js   # Accessibility hooks (keyboard nav, focus trap, etc.)
+├── pages/
+│   ├── jobseeker/     # 14 pages (Dashboard, Profile, Applications, etc.)
+│   ├── recruiter/     # 10 pages (Dashboard, PostJob, ATS, Interviews, etc.)
+│   ├── CompanyReviews.jsx   # Company review system
+│   ├── SalaryInsights.jsx   # Salary research tool
+│   ├── Home.jsx             # Landing page
+│   ├── JobSearch.jsx        # Job search with filters
+│   └── [5 more pages]
+├── redux/
+│   ├── store.js       # Redux store configuration
+│   └── slices/        # 11 Redux slices (auth, profile, jobs, applications, etc.)
+├── services/
+│   └── api.js         # API service configuration
+├── utils/
+│   ├── constants.js   # Application constants
+│   ├── helpers.js     # Helper functions
+│   └── validation.js  # Form validation utilities
+├── App.jsx            # Main app with routing, lazy loading, error boundary
+├── main.jsx           # Application entry point
+└── index.css          # Global styles with accessibility enhancements
 ```
 
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js 18+ and npm/yarn
+- Modern web browser (Chrome, Firefox, Safari, Edge)
 
-### Install Dependencies
+### Quick Start
+
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/job-portal-frontend.git
+cd job-portal-frontend
+
+# Install dependencies
 npm install
 ```
 
